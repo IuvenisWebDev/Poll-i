@@ -1,0 +1,16 @@
+{
+  "name": "VoteApp",
+  "version": "1.0.0",
+  "main": "app.js",
+  "author": "Kóródi Lőrinc <korodilorinc@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.10.4",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}

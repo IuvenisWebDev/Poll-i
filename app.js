@@ -2,7 +2,8 @@ const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 
-const userControllers = require('./controllers/userControllers')
+const userControllers = require('./controllers/userControllers');
+const pollControllers = require('./controllers/pollControllers');
 
 const app = express();
 
@@ -27,4 +28,16 @@ app.post('/signIn', (req, res) =>{
 
 app.get('/login', (req, res) =>{
     userControllers.login(req, res);
+});
+
+app.get('/polls', (req, res) => {
+    pollControllers.get_polls(req, res);
+});
+
+app.post('/polls/create', (req, res) =>{
+    pollControllers.create_poll(req, res);
+});
+
+app.get('/polls/:id', (req, res) => {
+    pollControllers.get_poll(req, res, req.params.id);
 });

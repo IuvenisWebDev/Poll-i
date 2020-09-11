@@ -29,7 +29,7 @@ const userSchema = new Schema({
                 type: Schema.ObjectId,
                 rel: Poll
             },
-            option: [String]
+            option: [Schema.ObjectId]
         }
     }]
 });

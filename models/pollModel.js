@@ -6,10 +6,7 @@ const pollSchema = new Schema({
         required: true
     },
 
-    description: {
-        type: String,
-        required: true
-    },
+    description: String,
 
     isMultipleChoice: {
         type: Boolean,
@@ -23,8 +20,14 @@ const pollSchema = new Schema({
         },
 
         count: Number
-    }]
-});
+    }],
+
+    expiration: {
+        type: Date,
+        required: true
+    }
+
+},{timestamps: true});
 
 const Poll = model('Poll', pollSchema);
 

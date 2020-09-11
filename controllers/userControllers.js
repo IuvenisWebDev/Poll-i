@@ -15,7 +15,7 @@ const signIn = async (req, res) => {
 
             user.save().then((result) => {
                 // res.send(result)
-                res.redirect('/')
+                res.redirect('/');
             })
         }
 

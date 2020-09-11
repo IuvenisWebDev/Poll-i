@@ -1,15 +1,21 @@
 const Poll = require('../models/pollModel');
 const User = require('../models/userModel');
 
-const get_poll = async (req, res, pollId = null) =>{
+const get_poll = async (req, res) =>{
 
     try{
 
-        if(pollId){
 
-            const polls = await Poll.find({'_id': { $in: pollId}});
+        
 
-            res.send(polls);
+        if(req.body.pollIds){
+
+            const pollIds = req.body.pollIds.split(",");
+
+            const polls = await Poll.find({'_id': { $in: pollIds}});
+
+            //res.send(polls);
+            res.redirect('/');
 
         }else{
 
@@ -67,21 +73,24 @@ const create_poll = async (req, res) =>{
                 await user.polls.push(result._id);
                 await user.save();
 
-                res.redirect('/polls');
+                //res.send(result);
+                res.redirect('/');
+            }).catch((err) =>{
+
+                console.log(err);
 
             })
-
 
     }catch (err){
         console.log(err);
     }
 };
 
-const vote = async (req, res, pollId) => {
+const vote = async (req, res) => {
 
     try{
 
-        const poll = await Poll.findById(pollId);
+        const poll = await Poll.findById(req.params.id);
         const user = await User.findById(req.body.userId);
 
         const votes = req.body.votes.split(",");
@@ -126,9 +135,11 @@ const vote = async (req, res, pollId) => {
 
             })
 
-            await poll.save()
+            poll.save()
                 .then((result) =>{
-                    res.send(result);
+
+                    //res.send(result);
+                    res.redirect('/');
                 })
 
         }

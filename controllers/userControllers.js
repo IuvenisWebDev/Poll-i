@@ -8,7 +8,7 @@ const signIn = async (req, res) => {
 
         if(await User.findOne({email: user.email})){
 
-            res.status(409).end();
+            res.status(409).send("This email is regitered.");
 
         }else{
             user.password = await bcrypt.hash(user.password,12);
@@ -33,11 +33,11 @@ const login = async (req, res) => {
 
         if(!user){
 
-            res.status(409).end();
+            res.status(409).send("This email is not regitered.");
 
         }else if(! await bcrypt.compare(req.body.password, user.password)){
 
-            res.status(401).end();
+            res.status(401).send("Wrong password.");
 
         }else{
 

@@ -31,17 +31,13 @@ app.get('/user/login', (req, res) =>{
 });
 
 app.get('/polls', (req, res) => {
-    pollControllers.get_polls(req, res);
+    pollControllers.get_poll(req, res,);
 });
 
 app.post('/polls/create', (req, res) =>{
     pollControllers.create_poll(req, res);
 });
 
-app.put('/polls/:id/vote', (req, res) =>{
-    pollControllers.vote(req, res);
-});
-
-app.get('/polls/:id', (req, res) => {
-    pollControllers.get_poll(req, res, req.params.id);
+app.put('/polls/:id', (req, res) => {
+    pollControllers.vote(req, res, req.params.id);
 });

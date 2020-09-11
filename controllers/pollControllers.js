@@ -1,46 +1,39 @@
 const Poll = require('../models/pollModel');
 const User = require('../models/userModel');
 
-const get_polls = (req, res) =>{
-    
-    Poll.find()
-        .then((polls) =>{
-
-            //res.send(polls);
-            res.redirect('/');
-
-        })
-        .catch((err) =>{
-
-            console.log(err);
-
-        })
-};
-
-const get_poll = async (req, res, id) =>{  
+const get_poll = async (req, res, pollId = null) =>{
 
     try{
 
-        const poll = await Poll.findById(id);
+        if(pollId){
 
-        if(!poll){
+            const polls = await Poll.find({'_id': { $in: pollId}});
 
-            res.status(404).end();
+            res.send(polls);
 
         }else{
 
-            //res.send(poll);
-            res.redirect('/')
+            Poll.find()
+            .then((polls) =>{
+
+                //res.send(polls);
+                res.redirect('/');
+
+            })
+            .catch((err) =>{
+
+                console.log(err);
+
+            })
 
         }
 
     }catch (err){
 
-        console.log(err);
+        console.log(err)
 
     }
     
-        
 };
 
 const create_poll = async (req, res) =>{
@@ -84,11 +77,11 @@ const create_poll = async (req, res) =>{
     }
 };
 
-const vote = async (req, res) => {
+const vote = async (req, res, pollId) => {
 
     try{
 
-        const poll = await Poll.findById(req.body.pollId);
+        const poll = await Poll.findById(pollId);
         const user = await User.findById(req.body.userId);
 
         const votes = req.body.votes.split(",");
@@ -150,7 +143,6 @@ const vote = async (req, res) => {
 
 
 module.exports = {
-    get_polls,
     get_poll,
     create_poll,
     vote

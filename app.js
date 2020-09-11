@@ -22,11 +22,11 @@ app.get('/', (req, res) =>{
     res.sendFile('./index.html',{root: __dirname});
 });
 
-app.post('/signIn', (req, res) =>{
+app.post('/user/signIn', (req, res) =>{
     userControllers.signIn(req, res);
 });
 
-app.get('/login', (req, res) =>{
+app.get('/user/login', (req, res) =>{
     userControllers.login(req, res);
 });
 
@@ -36,6 +36,10 @@ app.get('/polls', (req, res) => {
 
 app.post('/polls/create', (req, res) =>{
     pollControllers.create_poll(req, res);
+});
+
+app.put('/polls/:id/vote', (req, res) =>{
+    pollControllers.vote(req, res);
 });
 
 app.get('/polls/:id', (req, res) => {

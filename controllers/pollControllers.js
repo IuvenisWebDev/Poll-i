@@ -1,6 +1,5 @@
 const Poll = require('../models/pollModel');
 const User = require('../models/userModel');
-const { compareSync } = require('bcryptjs');
 
 const get_polls = (req, res) =>{
     
@@ -19,6 +18,7 @@ const get_polls = (req, res) =>{
 };
 
 const get_poll = async (req, res, id) =>{  
+
     try{
 
         const poll = await Poll.findById(id);
@@ -44,21 +44,29 @@ const get_poll = async (req, res, id) =>{
 };
 
 const create_poll = async (req, res) =>{
+
     try{
 
         const user = await User.findById(req.body.userId);
 
         const options = req.body.options.split(",").map( option => {
 
-            return JSON.parse(option);
+            option = JSON.parse(option);
+            option.count = 0;
+            return option;
 
         })
 
 
-        req.body.expiration = new Date(req.body.expiration);
-        req.body.options = options;
+        const expiration = new Date(req.body.expiration);
 
-        const poll = new Poll(req.body);
+        const poll = new Poll({
+            title: req.body.title,
+            description: req.body.description,
+            isMultipleChoice: req.body.isMultipleChoice,
+            options,
+            expiration
+        });
 
         poll.save()
             .then( async (result) =>{
@@ -76,9 +84,69 @@ const create_poll = async (req, res) =>{
     }
 };
 
+const vote = async (req, res) => {
+
+    try{
+
+        const poll = await Poll.findById(req.body.pollId);
+        const user = await User.findById(req.body.userId);
+
+        const votes = req.body.votes.split(",");
+
+        const alreadyVoted = user.votes.filter(vote =>{
+
+            return poll._id.toString() === vote.poll.toString();
+
+        })
+
+        if(alreadyVoted.length > 0){
+            
+            res.status(409).end();
+
+        }else if( (!poll.isMultipeChoice) && votes.length > 1){
+            
+            res.status(406).end();
+
+        }else{
+
+            await votes.forEach(vote => {
+                    user.votes.push({
+                    poll: poll._id,
+                    vote: vote
+                });
+            });
+
+            await user.save();
+
+            await poll.options.forEach( option =>{
+
+                if(votes.includes(option._id.toString())){
+
+                    option.count += 1;
+
+                }
+
+            })
+
+            await poll.save()
+                .then((result) =>{
+                    res.send(result);
+                })
+
+        }
+
+    }catch (err){
+
+        console.log(err);
+
+    }
+
+};
+
 
 module.exports = {
     get_polls,
     get_poll,
-    create_poll
+    create_poll,
+    vote
 };

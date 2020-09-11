@@ -24,13 +24,16 @@ const userSchema = new Schema({
     }],
 
     votes: [{
-        vote: {
-            poll:{
-                type: Schema.ObjectId,
-                rel: Poll
-            },
-            option: [Schema.ObjectId]
-        }
+        poll:{
+            type: Schema.ObjectId,
+            rel: Poll
+        },
+        vote: [Schema.ObjectId]
+    }],
+
+    invitations: [{
+        type: Schema.ObjectId,
+        rel: Poll
     }]
 });
 

@@ -1,7 +1,8 @@
 const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-const User = require('./models/userModel');
+
+const userControllers = require('./controllers/userControllers')
 
 const app = express();
 
@@ -14,18 +15,16 @@ mongoose.connect(`mongodb://localhost/voteApp`, {useNewUrlParser: true, useUnifi
     })
 
 app.use(morgan('dev'));
+app.use(express.urlencoded({extended: true}))
 
 app.get('/', (req, res) =>{
     res.sendFile('./index.html',{root: __dirname});
 });
 
 app.post('/signIn', (req, res) =>{
-    const user = new User(req.body);
+    userControllers.signIn(req, res);
+});
 
-    user.save().then((result) =>{
-        console.log(result);
-        res.redirect('/');
-    }).catch((err) =>{
-        console.log(err);
-    });
+app.get('/login', (req, res) =>{
+    userControllers.login(req, res);
 });

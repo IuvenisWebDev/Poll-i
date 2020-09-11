@@ -99,13 +99,18 @@ const vote = async (req, res) => {
 
         })
 
+
         if(alreadyVoted.length > 0){
             
-            res.status(409).end();
+            res.status(409).send("You've already voted.");
 
-        }else if( (!poll.isMultipeChoice) && votes.length > 1){
+        }else if( (!poll.isMultipleChoice) && votes.length > 1){
             
-            res.status(406).end();
+            res.status(406).send("Only one option allowed.");
+
+        }else if(Number(poll.expiration ) < Date.now()){
+
+            res.status(409).send("Expired poll.");
 
         }else{
 

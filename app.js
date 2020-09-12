@@ -9,7 +9,7 @@ const pollRouter = require('./routers/pollRouter')
 
 const app = express();
 
-mongoose.connect(`mongodb://localhost/voteApp`, {useNewUrlParser: true, useUnifiedTopology: true,useFindAndModify: false,useCreateIndex: true})
+mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.6qnue.azure.mongodb.net/VoteApp?retryWrites=true&w=majority`, {useNewUrlParser: true, useUnifiedTopology: true,useFindAndModify: false,useCreateIndex: true})
     .then((result) =>{
 
         console.log('Connected to database');

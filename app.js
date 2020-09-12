@@ -7,7 +7,7 @@ const pollRouter = require('./routers/pollRouter')
 
 const app = express();
 
-mongoose.connect(`mongodb://localhost/voteApp`, {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(`mongodb://localhost/voteApp`, {useNewUrlParser: true, useUnifiedTopology: true,useFindAndModify: false,useCreateIndex: true})
     .then((result) =>{
 
         console.log('Connected to database');

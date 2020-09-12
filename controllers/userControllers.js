@@ -8,14 +8,15 @@ const signIn = async (req, res) => {
 
         if(await User.findOne({email: user.email})){
 
-            res.status(409).send("This email is regitered.");
+            res.status(409).end();
 
         }else{
             user.password = await bcrypt.hash(user.password,12);
 
             user.save().then((result) => {
-                // res.send(result)
-                res.redirect('/');
+
+                res.send(result)
+
             })
         }
 
@@ -33,16 +34,15 @@ const login = async (req, res) => {
 
         if(!user){
 
-            res.status(409).send("This email is not regitered.");
+            res.status(409).end();
 
         }else if(! await bcrypt.compare(req.body.password, user.password)){
 
-            res.status(401).send("Wrong password.");
+            res.status(401).end();
 
         }else{
 
-            //res.send({user});
-            res.redirect('/');
+            res.send({user});
 
         }
     }catch (err){

@@ -2,6 +2,8 @@ const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 
+require('dotenv').config();
+
 const userRouter = require('./routers/userRouter');
 const pollRouter = require('./routers/pollRouter')
 
@@ -11,7 +13,8 @@ mongoose.connect(`mongodb://localhost/voteApp`, {useNewUrlParser: true, useUnifi
     .then((result) =>{
 
         console.log('Connected to database');
-        app.listen(3000);
+
+        app.listen(process.env.PORT)
 
     }).catch((err) =>{
 
@@ -27,5 +30,13 @@ app.use('/user', userRouter);
 app.use('/poll', pollRouter);
 
 app.get('/', (req, res) =>{
-    res.sendFile('./index.html', {root: __dirname});
+
+    res.redirect('/poll');
+
+});
+
+app.use((req,res) => {
+
+    res.status(404).end(); 
+
 });

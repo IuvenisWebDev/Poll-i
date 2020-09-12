@@ -12,6 +12,7 @@ const get_poll = async (req, res) =>{
 
             pollIds = req.params.id;
 
+
             polls = await Poll.findById(pollIds);
             
 
@@ -21,17 +22,13 @@ const get_poll = async (req, res) =>{
 
             polls = await Poll.find({'_id': {$in : pollIds}});
 
-            //res.send(polls);
-            res.redirect('/');
-
         }else{
 
             polls = await Poll.find()
-
+            
         }
 
-        //res.send(polls);
-        res.redirect('/');
+        res.send(polls);
 
     }catch (err){
 
@@ -72,8 +69,8 @@ const create_poll = async (req, res) =>{
                 await user.polls.push(result._id);
                 await user.save();
 
-                //res.send(result);
-                res.redirect('/');
+                res.send(result);
+
             }).catch((err) =>{
 
                 console.log(err);
@@ -103,15 +100,15 @@ const vote = async (req, res) => {
 
         if(alreadyVoted.length > 0){
             
-            res.status(409).send("You've already voted.");
+            res.status(409).end();
 
         }else if( (!poll.isMultipleChoice) && votes.length > 1){
             
-            res.status(406).send("Only one option allowed.");
+            res.status(406).end();
 
         }else if(Number(poll.expiration ) < Date.now()){
 
-            res.status(409).send("Expired poll.");
+            res.status(409).end();
 
         }else{
 
@@ -136,9 +133,9 @@ const vote = async (req, res) => {
 
             poll.save()
                 .then((result) =>{
+    
+                    res.send(result);
 
-                    //res.send(result);
-                    res.redirect('/');
                 })
 
         }

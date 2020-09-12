@@ -5,6 +5,8 @@ const router = Router();
 
 router.post('/create', pollController.create_poll);
 
+router.get('/:id', pollController.get_poll);
+
 router.put('/:id', pollController.vote);
 
 router.get('/', pollController.get_poll);

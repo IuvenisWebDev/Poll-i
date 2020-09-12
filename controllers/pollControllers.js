@@ -5,34 +5,33 @@ const get_poll = async (req, res) =>{
 
     try{
 
-
+        let pollIds;
+        let polls;
         
+        if(req.params.id){
 
-        if(req.body.pollIds){
+            pollIds = req.params.id;
 
-            const pollIds = req.body.pollIds.split(",");
+            polls = await Poll.findById(pollIds);
+            
 
-            const polls = await Poll.find({'_id': { $in: pollIds}});
+        }else if(req.body.pollIds){
+
+            pollIds = req.body.pollIds.split(",");
+
+            polls = await Poll.find({'_id': {$in : pollIds}});
 
             //res.send(polls);
             res.redirect('/');
 
         }else{
 
-            Poll.find()
-            .then((polls) =>{
-
-                //res.send(polls);
-                res.redirect('/');
-
-            })
-            .catch((err) =>{
-
-                console.log(err);
-
-            })
+            polls = await Poll.find()
 
         }
+
+        //res.send(polls);
+        res.redirect('/');
 
     }catch (err){
 

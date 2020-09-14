@@ -1,0 +1,16 @@
+body{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.brand-name{
+    font-size: 40px;
+}
+.brand-name .sub-text{
+    font-size: 20px;
+}
+.footer-item{
+    background-color: rgb(94, 245, 212);
+    font-weight: bold;
+    color: black;
+}
+
+

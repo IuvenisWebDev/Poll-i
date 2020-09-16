@@ -31,7 +31,7 @@ app.use('/poll', pollRouter);
 
 app.get('/', (req, res) =>{
 
-    res.redirect('/user');
+    res.sendFile('/html/landingpage.html',{root: "./"});
 
 });
 

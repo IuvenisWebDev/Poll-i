@@ -5,6 +5,13 @@ const router = Router();
 
 router.post('/create', pollController.create_poll);
 
+router.get('/create', (req, res) => {
+
+    //res.sendFile('../html/createPoll.html', {root: __dirname});
+    res.redirect("/")
+
+});
+
 router.get('/:id', pollController.get_poll);
 
 router.put('/:id', pollController.vote);

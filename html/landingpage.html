@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <div class="bg"></div>
     <header class="d-flex flex-row justify-content-between">
         <div class="d-flex flex-row">
             <img src="../images/icon-poll.png" class="mr-2" id="icon"></img>
@@ -17,24 +16,76 @@
         </div>     
         <div class="h2 text-primary" style="align-self: center;">surveying made easy</div>
         <div class="d-flex flex-row" style="align-self: center;">
-            <p class="h5 text-white mr-3">log in</p>
-            <p class="h5 text-white mr-3">sign up</p>        
+            <a href="#" id="login-btn" class="h5 text-white mr-3 text-decoration-none">log in</a>
+            <a href="#" id="signup-btn" class="h5 text-white mr-3 text-decoration-none">sign up</a>       
         </div>
     </header>
+    <div class="d-flex flex-column">
+
+        <!--nemu items-->
+
     <div class="nav d-flex flex-column ">
-          <a class="nav-item mt-5 nav-link h4 btn-info btn-md col-2" href="#">Create poll</a>
-          <a class="nav-item mt-1 nav-link h4 btn-info btn-lg col-2" href="#">Polls I filled</a>
-          <a class="nav-item mt-1 nav-link h4 btn-info btn-md col-2" href="#">Polls I started</a>
-          <a class="nav-item mt-1 nav-link h4 btn-info btn-lg col-2" href="#">Invitations</a>
-      <div>
-      <footer class="d-flex flex-row fixed-bottom footer-item justify-content-center">
+          <a class="nav-item mt-5 nav-link h4 btn-info btn-md col-2 text-center" href="#">Create poll</a>
+          <a class="nav-item mt-1 nav-link h4 btn-info btn-lg col-2 text-center" href="#">Polls I filled</a>
+          <a class="nav-item mt-1 nav-link h4 btn-info btn-md col-2 text-center" href="#">Polls I started</a>
+          <a class="nav-item mt-1 nav-link h4 btn-info btn-lg col-2 text-center" href="#">Invitations</a>
+    </div>
+
+    <!--signup form-->
+
+    <div id="forms-place"></div>
+    <form id="form-signup" class="d-flex flex-column justify-content-center w-25 mx-auto border border-secondary rounded bg-white fixed-top">
+        <label for="signup" class="h2 ml-auto mr-4 mt-3 mb-2">Sign up</label>
+        <div class="form-group px-4 mb-2">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="email-signup" aria-describedby="emailHelp" placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group px-4 mb-2">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="password-signup" placeholder="Password">
+        </div>
+        <div class="form-check ml-4 mb-2">
+            <input type="checkbox" class="form-check-input" id="checkbox-terms">
+            <label class="form-check-label" for="exampleCheck1">I accept the terms and conditons</label>
+        </div>
+        <div class="d-flex flex-row-reverse">
+            <button type="submit" class="btn btn-primary mr-4 mb-3" id="btn-signup">Sign up</button>
+            <!--TODO: insert url to Cancel button to href refresh the page-->
+            <a href="#" class="btn btn-primary ml-5 mr-3 mb-3">Cancel</a>        
+        </div>
+    </form>
+
+    <!--login form-->
+
+    <form id="form-login" class="d-flex flex-column justify-content-center w-25 mx-auto border border-secondary rounded bg-white fixed-top">
+        <label for="signup" class="h2 ml-auto mr-4 mt-3">Login</label>
+        <div class="form-group px-4">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="email-login" aria-describedby="emailHelp" placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group px-4">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="password-login" placeholder="Password">
+        </div>
+        
+        <div class="d-flex flex-row-reverse mb-2">
+            <button type="submit" class="btn btn-primary mr-4 mb-3" id="btn-login">Log in</button>
+            <!--TODO: insert url to Cancel button to href refresh the page-->
+            <a href="#" class="btn btn-primary ml-5 mr-3 mb-3">Cancel</a>    
+        </div>
+    </form>
+    </div>
+    <footer class="d-flex flex-row fixed-bottom footer-item justify-content-center">
             <p class="mx-3">Copyright 2020</p>
             <p class="mx-3">Terms and conditions</p>
             <p class="mx-3">Donate</p>
             <p class="mx-3">About us</p>
             <p class="mx-3">Privacy</p>
-      </footer>
+    </footer>
 </body>
+<script src="../client-side js/landingPage.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 </html>

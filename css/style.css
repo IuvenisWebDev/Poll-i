@@ -21,5 +21,13 @@ footer{
     font-weight: bold;
     color: black;
 }
+#form-signup{
+    margin-top: 140px;
+    position: absolute;
+}
+#form-login{
+    margin-top: 140px;
+    position: absolute;
+}
 
 

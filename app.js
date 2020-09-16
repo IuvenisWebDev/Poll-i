@@ -24,6 +24,7 @@ mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD
 
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended: true}))
+app.use(express.static('public'));
 
 app.use('/user', userRouter);
 

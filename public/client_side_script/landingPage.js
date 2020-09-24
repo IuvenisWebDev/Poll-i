@@ -1,5 +1,4 @@
-class FormHandler {
-  formsDiv = document.querySelector("#forms-place");
+class FormInitializer {
   formSignup = document.querySelector("#form-signup");
   formLogin = document.querySelector("#form-login");
   constructor() {
@@ -15,10 +14,10 @@ class EventManager {
   btnSignup = document.querySelector("#btn-signup");
   btnLogin = document.querySelector("#btn-login");
 
-  signupClasses = formHandler.formSignup.classList;
-  loginClasses = formHandler.formLogin.classList;
-  formSignup = formHandler.formSignup;
-  formLogin = formHandler.formLogin;
+  signupClasses = formInit.formSignup.classList;
+  loginClasses = formInit.formLogin.classList;
+  formSignup = formInit.formSignup;
+  formLogin = formInit.formLogin;
 
   constructor() {
     this.signupNav.addEventListener("click", () => {
@@ -45,7 +44,46 @@ class EventManager {
 class User {
   email;
   password;
+  constructor(email, password) {
+    this.email = email;
+    this.password = password;
+  }
 }
 
-const formHandler = new FormHandler();
+class SignupManager {
+  signupBtn = document.querySelector("#btn-signup");
+  email = document.querySelector("#email-signup");
+  password = document.querySelector("#password-signup");
+  areTermsAgreed = document.querySelector("#checkbox-terms");
+  mainContent = document.querySelector("#content-main");
+  response;
+
+  //TODO: client side form data validation, specify url
+  constructor() {
+    this.signupBtn.addEventListener("click", async () => {
+      const user = new User(email.value, password.value);
+      this.response = await axios.put("*********/signin", user);
+      this.mainContent.appendChild(JSON.parse(this.response.data));
+    });
+  }
+}
+
+class LoginManager {
+  mainContent = document.querySelector("#content-main");
+  loginBtn = document.querySelector("#btn-login");
+  email = document.querySelector("#email-login");
+  password = document.querySelector("#password-login");
+
+  constructor() {
+    this.loginBtn.addEventListener("click", async () => {
+      const user = new User(email.value, password.value);
+      this.response = await axios.put("*********/login", user);
+      this.mainContent.appendChild(JSON.parse(this.response.data));
+    });
+  }
+}
+
+const formInit = new FormInitializer();
 const eventManager = new EventManager();
+const signupManager = new SignupManager();
+const loginManager = new LoginManager();

@@ -16,13 +16,17 @@ const get_poll = async (req, res) =>{
 
                 polls = await Poll.find({'_id': {$in : user.polls}})
 
-            }else{
+            }else if(req.params.type === "votes"){
 
                 pollIds = user.votes.map(vote =>{
                     return vote.poll;
                 })
 
                 polls = await Poll.find({'_id': {$in : pollIds}});
+
+            }else{
+
+                res.status(404).end();
 
             }
 

@@ -12,6 +12,8 @@ router.get('/create', (req, res) => {
 
 });
 
+router.get('/:userId/:type', pollController.get_poll);
+
 router.get('/:id', pollController.get_poll);
 
 router.put('/:id', pollController.vote);

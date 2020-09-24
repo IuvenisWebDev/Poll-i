@@ -33,24 +33,24 @@
 
     <!--signup form-->
 
-    <div id="forms-place"></div>
+    <div id="content-main"></div>
     <form id="form-signup" class="d-flex flex-column justify-content-center w-25 mx-auto border border-secondary rounded bg-white fixed-top">
         <label for="signup" class="h2 ml-auto mr-4 mt-3 mb-2">Sign up</label>
         <div class="form-group px-4 mb-2">
-            <label for="exampleInputEmail1">Email address</label>
+            <label for="email-signup" id="label-email">Email address</label>
             <input type="email" class="form-control" id="email-signup" aria-describedby="emailHelp" placeholder="Enter email">
             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
         <div class="form-group px-4 mb-2">
-            <label for="exampleInputPassword1">Password</label>
+            <label for="password-signup">Password</label>
             <input type="password" class="form-control" id="password-signup" placeholder="Password">
         </div>
         <div class="form-check ml-4 mb-2">
             <input type="checkbox" class="form-check-input" id="checkbox-terms">
-            <label class="form-check-label" for="exampleCheck1">I accept the terms and conditons</label>
+            <label class="form-check-label" for="checkbox-terms">I accept the terms and conditons</label>
         </div>
         <div class="d-flex flex-row-reverse">
-            <button type="submit" class="btn btn-primary mr-4 mb-3" id="btn-signup">Sign up</button>
+            <button type="" class="btn btn-primary mr-4 mb-3" id="btn-signup">Sign up</button>
             <!--TODO: insert url to Cancel button to href refresh the page-->
             <a href="#" class="btn btn-primary ml-5 mr-3 mb-3">Cancel</a> 
         </div>
@@ -59,14 +59,14 @@
     <!--login form-->
 
     <form id="form-login" class="d-flex flex-column justify-content-center w-25 mx-auto border border-secondary rounded bg-white fixed-top">
-        <label for="signup" class="h2 ml-auto mr-4 mt-3">Login</label>
+        <label for="form-login" class="h2 ml-auto mr-4 mt-3">Login</label>
         <div class="form-group px-4">
-            <label for="exampleInputEmail1">Email address</label>
+            <label for="email-login">Email address</label>
             <input type="email" class="form-control" id="email-login" aria-describedby="emailHelp" placeholder="Enter email">
             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
         <div class="form-group px-4">
-            <label for="exampleInputPassword1">Password</label>
+            <label for="password-login">Password</label>
             <input type="password" class="form-control" id="password-login" placeholder="Password">
         </div>
         
@@ -85,6 +85,7 @@
             <p class="mx-3">Privacy</p>
     </footer>
 </body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="../public/client_side_script/landingPage.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>

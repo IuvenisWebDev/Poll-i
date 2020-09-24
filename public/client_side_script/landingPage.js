@@ -10,7 +10,6 @@ class FormInitializer {
 class EventManager {
   signupNav = document.querySelector("#signup-btn");
   loginNav = document.querySelector("#login-btn");
-  areTermsAccepted = document.querySelector("#checkbox-temrs");
   btnSignup = document.querySelector("#btn-signup");
   btnLogin = document.querySelector("#btn-login");
 
@@ -61,7 +60,7 @@ class SignupManager {
   //TODO: client side form data validation, specify url
   constructor() {
     this.signupBtn.addEventListener("click", async () => {
-      const user = new User(email.value, password.value);
+      const user = new User(this.email.value, this.password.value);
       this.response = await axios.put("*********/signin", user);
       this.mainContent.appendChild(JSON.parse(this.response.data));
     });
@@ -74,6 +73,7 @@ class LoginManager {
   email = document.querySelector("#email-login");
   password = document.querySelector("#password-login");
 
+  //TODO: specify url
   constructor() {
     this.loginBtn.addEventListener("click", async () => {
       const user = new User(email.value, password.value);

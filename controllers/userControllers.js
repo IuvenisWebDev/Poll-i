@@ -13,9 +13,12 @@ const signUp = async (req, res) => {
         }else{
             user.password = await bcrypt.hash(user.password,12);
 
-            user.save().then((result) => {
+            user.save().then(async (result) => {
 
-                res.send(result)
+              
+                await res.cookie("user_id",result._id,{httpOnly: true,});
+                res.redirect("/");
+                
 
             })
         }
@@ -41,7 +44,8 @@ const login = async (req, res) => {
             res.status(401).end();
 
         }else{
-
+            
+            res.cookie("user_id",user._id);
             res.send({user});
 
         }

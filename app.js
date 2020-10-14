@@ -2,6 +2,9 @@ const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 
+const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
+
 require("dotenv").config();
 
 const userRouter = require("./routers/userRouter");
@@ -32,11 +35,14 @@ app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
+app.use(cookieParser());
+
 app.use("/user", userRouter);
 
 app.use("/poll", pollRouter);
 
 app.get("/", (req, res) => {
+  console.log(req.cookies["user_id"])
   res.sendFile("/html/landingpage.html", { root: "./" });
 });
 

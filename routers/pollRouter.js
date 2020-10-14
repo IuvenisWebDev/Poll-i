@@ -12,7 +12,7 @@ router.get('/create', (req, res) => {
 
 });
 
-router.get('/:userId/:type', pollController.get_poll);
+router.get('/current/:type', pollController.get_poll);
 
 router.get('/:id', pollController.get_poll);
 

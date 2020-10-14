@@ -8,9 +8,10 @@ const get_poll = async (req, res) =>{
         let pollIds;
         let polls;
         
-        if(req.params.userId){
+        if(req.params.type){
 
-            const user = await User.findById(req.params.userId);
+            
+            const user = await User.findById(req.cookies['user_id']);
 
             if(req.params.type === "polls"){
 
@@ -66,7 +67,7 @@ const create_poll = async (req, res) =>{
 
     try{
 
-        const user = await User.findById(req.body.userId);
+        const user = await User.findById(req.cookies["user_id"]);
 
         const options = req.body.options.split(",").map( option => {
 
@@ -111,7 +112,7 @@ const vote = async (req, res) => {
     try{
 
         const poll = await Poll.findById(req.params.id);
-        const user = await User.findById(req.body.userId);
+        const user = await User.findById(req.cookies["user_id"]);
 
         const votes = req.body.votes.split(",");
 

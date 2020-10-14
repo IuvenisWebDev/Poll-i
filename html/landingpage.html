@@ -20,45 +20,42 @@
             <a href="#" id="signup-btn" class="h5 text-white mr-3 text-decoration-none">sign up</a>       
         </div>
     </header>
-    <div class="d-flex flex-column">
-
-        <!--nemu items-->
-
-    <div class="nav d-flex flex-column ">
-          <a class="nav-item mt-5 nav-link h4 btn-info btn-md col-2 text-center rounded" href="#">Create poll</a>
-          <a class="nav-item mt-1 nav-link h4 btn-info btn-md col-2 text-center rounded" href="#">Polls I filled</a>
-          <a class="nav-item mt-1 nav-link h4 btn-info btn-md col-2 text-center rounded" href="#">Polls I started</a>
-          <a class="nav-item mt-1 nav-link h4 btn-info btn-md col-2 text-center rounded" href="#">Invitations</a>
-    </div>
-
+    <div id="home-menu" class="d-flex flex-column">
+        
+    <!--nemu items-->
     <!--signup form-->
 
     <div id="content-main"></div>
-    <form id="form-signup" class="d-flex flex-column justify-content-center w-25 mx-auto border border-secondary rounded bg-white fixed-top">
+    <form method="POST" action="/user/signup" id="form-signup" class="d-flex flex-column justify-content-center w-25 mx-auto border border-secondary rounded bg-white fixed-top">
         <label for="signup" class="h2 ml-auto mr-4 mt-3 mb-2">Sign up</label>
         <div class="form-group px-4 mb-2">
-            <label for="email-signup" id="label-email">Email address</label>
-            <input type="email" class="form-control" id="email-signup" aria-describedby="emailHelp" placeholder="Enter email">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            <label for="email-signup">Email address</label>
+            <input name="email" type="email" class="form-control" id="email-signup" aria-describedby="emailHelp" placeholder="Enter email">
+            <small class="form-text text-muted">We'll never share your email with anyone else</small>
+        </div>
+        <div class="form-group px-4 mb-2">
+            <label for="username">Profile name</label>
+            <input name="name" type="text" class="form-control" id="name-signup" aria-describedby="emailHelp" placeholder="Profile name">
+            <small class="form-text text-muted">Give a name for your public profile</small>
         </div>
         <div class="form-group px-4 mb-2">
             <label for="password-signup">Password</label>
-            <input type="password" class="form-control" id="password-signup" placeholder="Password">
+            <input name="password" type="password" class="form-control" id="password-signup" placeholder="Password">
         </div>
         <div class="form-check ml-4 mb-2">
-            <input type="checkbox" class="form-check-input" id="checkbox-terms">
+            <input name="terms" type="checkbox" class="form-check-input" id="checkbox-terms">
             <label class="form-check-label" for="checkbox-terms">I accept the terms and conditons</label>
         </div>
         <div class="d-flex flex-row-reverse">
-            <button type="" class="btn btn-primary mr-4 mb-3" id="btn-signup">Sign up</button>
+            <button type="submit" class="btn btn-primary mr-4 mb-3" id="btn-signup">Sign up</button>
             <!--TODO: insert url to Cancel button to href refresh the page-->
-            <a href="#" class="btn btn-primary ml-5 mr-3 mb-3">Cancel</a> 
+            <button class="btn btn-primary ml-5 mr-3 mb-3">Cancel</button> 
         </div>
     </form>
 
     <!--login form-->
 
-    <form id="form-login" class="d-flex flex-column justify-content-center w-25 mx-auto border border-secondary rounded bg-white fixed-top">
+    <form method="POST" id="form-login" action="/user/login" class="d-flex flex-column justify-content-center w-25 mx-auto border border-secondary rounded bg-white fixed-top">
         <label for="form-login" class="h2 ml-auto mr-4 mt-3">Login</label>
         <div class="form-group px-4">
             <label for="email-login">Email address</label>
@@ -73,7 +70,7 @@
         <div class="d-flex flex-row-reverse mb-2">
             <button type="submit" class="btn btn-primary mr-4 mb-3" id="btn-login">Log in</button>
             <!--TODO: insert url to Cancel button to href refresh the page-->
-            <a href="#" class="btn btn-primary ml-5 mr-3 mb-3">Cancel</a>    
+            <button class="btn btn-primary ml-5 mr-3 mb-3">Cancel</button>    
         </div>
     </form>
     </div>

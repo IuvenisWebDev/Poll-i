@@ -42,7 +42,6 @@ app.use("/user", userRouter);
 app.use("/poll", pollRouter);
 
 app.get("/", (req, res) => {
-  console.log(req.cookies["user_id"])
   res.sendFile("/html/landingpage.html", { root: "./" });
 });
 

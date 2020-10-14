@@ -40,15 +40,6 @@ class EventManager {
   }
 }
 
-class User {
-  email;
-  password;
-  constructor(email, password) {
-    this.email = email;
-    this.password = password;
-  }
-}
-
 class SignupManager {
   signupBtn = document.querySelector("#btn-signup");
   email = document.querySelector("#email-signup");
@@ -56,15 +47,6 @@ class SignupManager {
   areTermsAgreed = document.querySelector("#checkbox-terms");
   mainContent = document.querySelector("#content-main");
   response;
-
-  //TODO: client side form data validation, specify url
-  constructor() {
-    this.signupBtn.addEventListener("click", async () => {
-      const user = new User(this.email.value, this.password.value);
-      this.response = await axios.put("*********/signin", user);
-      this.mainContent.appendChild(JSON.parse(this.response.data));
-    });
-  }
 }
 
 class LoginManager {
@@ -72,15 +54,6 @@ class LoginManager {
   loginBtn = document.querySelector("#btn-login");
   email = document.querySelector("#email-login");
   password = document.querySelector("#password-login");
-
-  //TODO: specify url
-  constructor() {
-    this.loginBtn.addEventListener("click", async () => {
-      const user = new User(email.value, password.value);
-      this.response = await axios.put("*********/login", user);
-      this.mainContent.appendChild(JSON.parse(this.response.data));
-    });
-  }
 }
 
 const formInit = new FormInitializer();

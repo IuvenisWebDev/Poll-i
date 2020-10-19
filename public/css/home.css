@@ -1,0 +1,57 @@
+body {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  background-image: url("../images/background-image.png");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+header {
+  background: rgb(253, 255, 255);
+  background: linear-gradient(
+    90deg,
+    rgba(253, 255, 255, 1) 0%,
+    rgba(136, 255, 244, 1) 92%,
+    rgba(120, 240, 255, 1) 100%,
+    rgba(6, 0, 105, 1) 100%
+  );
+}
+.brand-name {
+  font-size: 40px;
+}
+.brand-name .sub-text {
+  font-size: 20px;
+}
+footer {
+  background-color: rgb(131, 143, 140);
+  font-weight: bold;
+  color: black;
+}
+
+#content-main {
+  margin-left: 25vw;
+  margin-bottom: 60vh;
+  margin-top: -30vh;
+}
+
+#poll-options {
+  display: flex;
+  flex-direction: row;
+}
+
+#add-btn {
+  margin-left: 35vh;
+  margin-right: 20px;
+}
+
+.btn-danger {
+  margin-left: -23px;
+}
+
+form {
+  padding-top: 20px;
+  padding-bottom: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
+}

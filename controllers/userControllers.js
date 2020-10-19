@@ -30,7 +30,7 @@ const login = async (req, res) => {
     } else if (!(await bcrypt.compare(req.body.password, user.password))) {
       res.status(401).end();
     } else {
-      await res.cookie("user_id", user._id, { httpOnly: true, expires: new Date(Date.now() + 86400000) });
+      await res.cookie("user_id", user._id, { httpOnly: true, expires: new Date(Date.now()+ (24*60*60*1000)) });
       res.redirect("/");
     }
   } catch (err) {

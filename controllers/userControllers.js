@@ -38,7 +38,18 @@ const login = async (req, res) => {
   }
 };
 
+const signOut = async (req,res) =>{
+  try{
+
+    res.clearCookie("user_id");
+    res.redirect("/");
+  }catch (err){
+    console.log(err);
+  }
+}
+
 module.exports = {
   signUp,
   login,
+  signOut,
 };

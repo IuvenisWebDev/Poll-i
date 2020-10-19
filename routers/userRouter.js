@@ -13,6 +13,8 @@ router.get('/signUp', (req, res) => {
 
 });
 
+router.post('/signOut', userController.signOut);
+
 router.post('/login', userController.login);
 
 module.exports = router;

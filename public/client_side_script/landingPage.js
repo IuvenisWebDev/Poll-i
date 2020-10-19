@@ -46,7 +46,6 @@ class SignupManager {
   password = document.querySelector("#password-signup");
   areTermsAgreed = document.querySelector("#checkbox-terms");
   mainContent = document.querySelector("#content-main");
-  response;
 }
 
 class LoginManager {
@@ -54,6 +53,7 @@ class LoginManager {
   loginBtn = document.querySelector("#btn-login");
   email = document.querySelector("#email-login");
   password = document.querySelector("#password-login");
+  homeMenu = document.querySelector("#home-menu");
 }
 
 const formInit = new FormInitializer();

@@ -13,6 +13,17 @@ class EventManager {
   btnSignup = document.querySelector("#btn-signup");
   btnLogin = document.querySelector("#btn-login");
 
+  btnCancelSignup = document.querySelector("#btn-cancel-signup");
+  btnCancelLogin = document.querySelector("#btn-cancel-login");
+
+  tbEmailSignup = document.querySelector("#email-signup");
+  tbNameSignup = document.querySelector("#name-signup");
+  pbPasswordSignup = document.querySelector("#password-signup");
+  cbAcceptSignup = document.querySelector("#checkbox-terms");
+
+  tbEmailLogin = document.querySelector("#email-login");
+  pbPasswordLogin = document.querySelector("#password-login");
+
   signupClasses = formInit.formSignup.classList;
   loginClasses = formInit.formLogin.classList;
   formSignup = formInit.formSignup;
@@ -37,26 +48,18 @@ class EventManager {
         this.signupClasses.add("invisible");
       }
     });
+    this.btnCancelSignup.addEventListener("click", () => {
+      this.tbEmailSignup.value = "";
+      this.pbPasswordSignup.value = "";
+      this.tbNameSignup.value = "";
+      this.cbAcceptSignup.checked = false;
+    });
+    this.btnCancelLogin.addEventListener("click", () => {
+      this.tbEmailLogin.value = "";
+      this.pbPasswordLogin.value = "";
+    });
   }
-}
-
-class SignupManager {
-  signupBtn = document.querySelector("#btn-signup");
-  email = document.querySelector("#email-signup");
-  password = document.querySelector("#password-signup");
-  areTermsAgreed = document.querySelector("#checkbox-terms");
-  mainContent = document.querySelector("#content-main");
-}
-
-class LoginManager {
-  mainContent = document.querySelector("#content-main");
-  loginBtn = document.querySelector("#btn-login");
-  email = document.querySelector("#email-login");
-  password = document.querySelector("#password-login");
-  homeMenu = document.querySelector("#home-menu");
 }
 
 const formInit = new FormInitializer();
 const eventManager = new EventManager();
-const signupManager = new SignupManager();
-const loginManager = new LoginManager();

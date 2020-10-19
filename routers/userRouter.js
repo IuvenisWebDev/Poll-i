@@ -7,8 +7,6 @@ router.post('/signUp', userController.signUp);
 
 router.get('/signUp', (req, res) => {
 
-  
-    //res.sendFile('/html/signUpPage.html',{root: "./"});
     res.redirect('/');
 
 });

@@ -1,0 +1,92 @@
+<!-- THIS PAGE IS NOW THE EXACT COPY OF home.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poll-i</title>
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <header class="d-flex flex-row justify-content-between">
+        <div class="d-flex flex-row">
+            <img src="../images/icon-poll.png" class="mr-2" id="icon"></img>
+            <!--p class="h1 text-black" style="align-self: center;">Poll-i</p>-->
+        </div>     
+        <div class="h2 text-primary" style="align-self: center;">surveying made easy</div>
+        <div class="d-flex flex-row" style="align-self: center;">
+            <a href="#" id="signup-btn" class="h5 text-white mr-3 text-decoration-none">sign out</a>       
+        </div>
+    </header>
+
+    <div class="nav d-flex flex-column">
+        <a
+            class="nav-item mt-5 nav-link h4 btn-info btn-md col-2 text-center rounded"
+            href="#"
+            >Create poll</a
+        >
+        <a
+            class="nav-item mt-1 nav-link h4 btn-info btn-md col-2 text-center rounded"
+            href="#"
+            >Polls I filled</a
+        >
+        <a
+            class="nav-item mt-1 nav-link h4 btn-info btn-md col-2 text-center rounded"
+            href="#"
+            >Polls I started</a
+        >
+        <a
+            class="nav-item mt-1 nav-link h4 btn-info btn-md col-2 text-center rounded"
+            href="#"
+            >Invitations</a
+        >
+    </div>
+
+    <div id="content-main">
+        <form action="POST" action="" class="bg-light col-10" id="form-create-poll">
+            <div class="form-group row">
+                <label for="poll-title" class="col-sm-2 col-form-label">Title</label>
+                <div class="col-sm-10">
+                    <input type="text" name="title" class="form-control" id="poll-title" placeholder="Enter the title">
+                </div>
+            </div>
+            <div class="form-group row">
+                    <label for="poll-desc" class="col-sm-2 col-form-label">Description</label>
+                    <div class="col-sm-10">
+                        <textarea id="poll-desc" class="form-control" name="description" aria-label="With textarea" placeholder="Give a short description"></textarea>
+                    </div>
+            </div>
+            <div class="form-group row">
+                    <div class="col-sm-2">
+                        <label class="form-check-label" for="is-multiple">Multiple choice</label>
+                    </div>
+                    <input type="checkbox" name="isMultipleChoice" class="form-check-input col-sm-6" id="is-multiple">
+                    <button class="btn btn-info" id="add-btn" type="button">Add answer</button>
+                    <button class="btn btn-info" id="btn-create" type="submit">Create poll</button>  
+            </div>
+            <div class="form-group row" id="poll-options">
+                <label for="poll-answer" class="col-sm-2 col-form-label">Answer text</label>
+                <div class="col-sm-10">
+                        <input type="text" name="title" class="form-control" id="poll-answer" placeholder="Answer">
+                </div>
+            </div>
+        </form> 
+    </div>
+
+
+    <footer class="d-flex flex-row fixed-bottom footer-item justify-content-center">
+            <p class="mx-3">Copyright 2020</p>
+            <p class="mx-3">Terms and conditions</p>
+            <p class="mx-3">Donate</p>
+            <p class="mx-3">About us</p>
+            <p class="mx-3">Privacy</p>
+    </footer>
+</body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="/client_side_script/home.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</html>

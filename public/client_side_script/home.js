@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const addBtn = document.querySelector("#add-btn");
-  const options = document.querySelector("#form-create-poll");
+  const options = document.querySelector("#form-create");
   const optionText = document.querySelector("#poll-answer");
 
   addBtn.addEventListener("click", () => {

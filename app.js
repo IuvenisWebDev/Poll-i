@@ -42,14 +42,13 @@ app.use("/user", userRouter);
 app.use("/poll", pollRouter);
 
 app.get("/", (req, res) => {
-  if(!req.cookies["user_id"]){
+  if (!req.cookies["user_id"]) {
     res.sendFile("/html/landingpage.html", { root: "./" });
-  }else{
-    res.sendFile("/html/home.html", {root: "./"});
+  } else {
+    res.sendFile("/html/home.html", { root: "./" });
   }
-  
 });
 
 app.use((req, res) => {
-  res.status(404).end();
+  res.status(404).sendFile("html/404.html", { root: "./" });
 });

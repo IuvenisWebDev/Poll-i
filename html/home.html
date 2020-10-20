@@ -12,11 +12,12 @@
     <header class="d-flex flex-row justify-content-between">
         <div class="d-flex flex-row">
             <img src="../images/icon-poll.png" class="mr-2" id="icon"></img>
-            <!--p class="h1 text-black" style="align-self: center;">Poll-i</p>-->
         </div>     
         <div class="h2 text-primary" style="align-self: center; margin-left: -10vh;">surveying made easy</div>
         <div class="d-flex flex-row" style="align-self: center;">
-            <a href="#" id="signup-btn" class="h5 text-white mr-3 text-decoration-none">sign out</a>       
+            <form action="/user/signout" method="POST">
+                <button class="btn-signout h5">sign out</button>
+            </form>     
         </div>
     </header>
 
@@ -44,7 +45,7 @@
     </div>
 
     <div id="content-main">
-        <form action="POST" action="" class="bg-light col-10" id="form-create-poll">
+        <form action="POST" action="" class="bg-light col-10" id="form-create">
             <div class="form-group row">
                 <label for="poll-title" class="col-sm-2 col-form-label">Title</label>
                 <div class="col-sm-10">

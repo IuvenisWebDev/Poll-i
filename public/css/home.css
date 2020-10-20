@@ -44,9 +44,16 @@ footer {
   margin-left: -23px;
 }
 
-form {
+#form-create {
   padding-top: 20px;
   padding-bottom: 5px;
   border: 1px solid black;
   border-radius: 5px;
+}
+
+.btn-signout {
+  background-color: inherit;
+  border: 0px;
+  color: white;
+  margin-right: 6vh;
 }

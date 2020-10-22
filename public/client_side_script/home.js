@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     newOption.innerHTML = `
         <label for="poll-answer" class="col-sm-2 col-form-label">Answer</label>
           <div class="col-sm-9">
-              <input type="text text-muted" name="title" class="form-control" value="${optionText.value}">
+              <input type="text" name="option" class="form-control text-muted" value="${optionText.value}">
           </div>
         <div class="btn-group col-sm-1">
           <button class="btn btn-sm btn-danger">remove</button>
@@ -16,5 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
     newOption.className = "form-group row";
     options.appendChild(newOption);
+    optionText.value = "";
   });
 });

@@ -60,7 +60,8 @@ footer {
 
 #input-datetime{
   margin-left: 2vh;
-  max-width: 24vh;
+  max-width: 30vh;
+  width: 28vh;
 }
 
 #cb-multiple{

@@ -57,3 +57,13 @@ footer {
   color: white;
   margin-right: 6vh;
 }
+
+#input-datetime{
+  margin-left: 2vh;
+  max-width: 24vh;
+}
+
+#cb-multiple{
+  margin-left: -7.5vh;
+  margin-top: 1vh;
+}

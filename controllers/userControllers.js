@@ -12,7 +12,7 @@ const signUp = async (req, res) => {
       user.password = await bcrypt.hash(user.password, 12);
 
       user.save().then(async (result) => {
-        await res.cookie("user_id", result._id, { httpOnly: true,maxAge:  24*60*60*1000 }); // 1 day expiration
+        await res.cookie("user_id", result._id, { httpOnly: true,maxAge:  86400000 }); // 1 day expiration
         res.redirect("/");
       });
     }
@@ -30,7 +30,7 @@ const login = async (req, res) => {
     } else if (!(await bcrypt.compare(req.body.password, user.password))) {
       res.status(401).end();
     } else {
-      await res.cookie("user_id", user._id, { httpOnly: true, maxAge: 24*60*60*1000});
+      await res.cookie("user_id", user._id, { httpOnly: true, maxAge: 86400000});
       res.redirect("/");
     }
   } catch (err) {

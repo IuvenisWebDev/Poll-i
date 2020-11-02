@@ -77,12 +77,6 @@ const create_poll = async (req, res) =>{
 
         }) */
 
-        const options = req.body.options.map(option =>{
-            option.count = 0;
-            return option;
-        })
-
-
         const expiration = new Date(req.body.expiration);
 
         const poll = new Poll({

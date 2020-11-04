@@ -83,7 +83,7 @@ const create_poll = async (req, res) =>{
             title: req.body.title,
             description: req.body.description,
             isMultipleChoice: req.body.isMultipleChoice,
-            options,
+            options: req.body.options,
             expiration
         });
 

@@ -50,13 +50,6 @@ document.addEventListener("DOMContentLoaded", () => {
       expiration: poll.expiration,
     };
 
-<<<<<<< HEAD
-    console.log(poll);
-
-    axios.post('/poll/create',data)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
-=======
     fetch("/poll/create", {
       method: "POST",
       headers: {
@@ -71,6 +64,5 @@ document.addEventListener("DOMContentLoaded", () => {
       .catch((error) => {
         console.error("Error:", error);
       });
->>>>>>> 13f6d3f59e7bf3aa0fccaebfeb624e1453448a89
   });
 });

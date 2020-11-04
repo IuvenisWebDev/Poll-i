@@ -37,28 +37,10 @@ document.addEventListener("DOMContentLoaded", () => {
     let options = [];
 
     for (let option of optionsRaw) {
-      options.push({ label: `${option.value}` });
+      options.push({ label: `${option.value}`, count: 0 });
     }
 
     poll.options = options;
-    //console.log(poll.options);
-
-    console.log(JSON.stringify(poll));
-
-    /*axios
-      .post({
-        method: "POST",
-        url: "/poll/create",
-        data: {
-          title: poll.title,
-          description: poll.description,
-          isMultipleChoice: poll.isMultipleChoice,
-          options: poll.options,
-          expiration: poll.expiration,
-        },
-      })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));*/
 
     const readypoll = {
       title: poll.title,
@@ -67,21 +49,6 @@ document.addEventListener("DOMContentLoaded", () => {
       options: poll.options,
       expiration: poll.expiration,
     };
-
-    const url = "http://localhost:5500/poll/create";
-
-    const dataoptions = {
-      method: "POST",
-      body: JSON.stringify(readypoll),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-
-    /*fetch(url, dataoptions)
-      .then((res) => res.json())
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));*/
 
     fetch("/poll/create", {
       method: "POST",

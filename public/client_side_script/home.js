@@ -37,23 +37,40 @@ document.addEventListener("DOMContentLoaded", () => {
     let options = [];
 
     for (let option of optionsRaw) {
-      options.push(option.value);
+      options.push({ label: `${option.value}`, count: 0 });
     }
 
     poll.options = options;
 
-    let data = {
+    const readypoll = {
       title: poll.title,
       description: poll.description,
       isMultipleChoice: poll.isMultipleChoice,
-      options,
+      options: poll.options,
       expiration: poll.expiration,
     };
 
+<<<<<<< HEAD
     console.log(poll);
 
     axios.post('/poll/create',data)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
+=======
+    fetch("/poll/create", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(readypoll),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+>>>>>>> 13f6d3f59e7bf3aa0fccaebfeb624e1453448a89
   });
 });

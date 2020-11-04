@@ -52,14 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     console.log(poll);
 
-    axios
-      .post({
-        method: "POST",
-        url: "/poll/create",
-        data: {
-          data,
-        },
-      })
+    axios.post('/poll/create',data)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   });

@@ -77,13 +77,15 @@ const create_poll = async (req, res) =>{
 
         }) */
 
+
+
         const expiration = new Date(req.body.expiration);
 
         const poll = new Poll({
             title: req.body.title,
             description: req.body.description,
             isMultipleChoice: req.body.isMultipleChoice,
-            options,
+            options: req.body.options,
             expiration
         });
 

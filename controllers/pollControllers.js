@@ -69,14 +69,13 @@ const create_poll = async (req, res) =>{
 
         const user = await User.findById(req.cookies["user_id"]);
 
-        const options = req.body.options.split(",").map( option => {
+        /* const options = req.body.options.split(",").map( option => {
 
             option = JSON.parse(option);
             option.count = 0;
             return option;
 
-        })
-
+        }) */
 
         const expiration = new Date(req.body.expiration);
 

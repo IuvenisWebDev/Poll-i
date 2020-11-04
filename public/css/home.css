@@ -68,3 +68,11 @@ footer {
   margin-left: -7.5vh;
   margin-top: 1vh;
 }
+
+.poll-container{
+  padding-top: 20px;
+  padding-bottom: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+

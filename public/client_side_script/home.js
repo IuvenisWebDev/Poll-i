@@ -37,30 +37,65 @@ document.addEventListener("DOMContentLoaded", () => {
     let options = [];
 
     for (let option of optionsRaw) {
-      options.push(option.value);
+      options.push({ label: `${option.value}` });
     }
 
     poll.options = options;
+    //console.log(poll.options);
 
-    let data = {
-      title: poll.title,
-      description: poll.description,
-      isMultipleChoice: poll.isMultipleChoice,
-      options,
-      expiration: poll.expiration,
-    };
+    console.log(JSON.stringify(poll));
 
-    console.log(poll);
-
-    axios
+    /*axios
       .post({
         method: "POST",
         url: "/poll/create",
         data: {
-          data,
+          title: poll.title,
+          description: poll.description,
+          isMultipleChoice: poll.isMultipleChoice,
+          options: poll.options,
+          expiration: poll.expiration,
         },
       })
       .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err));*/
+
+    const readypoll = {
+      title: poll.title,
+      description: poll.description,
+      isMultipleChoice: poll.isMultipleChoice,
+      options: poll.options,
+      expiration: poll.expiration,
+    };
+
+    const url = "http://localhost:5500/poll/create";
+
+    const dataoptions = {
+      method: "POST",
+      body: JSON.stringify(readypoll),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    /*fetch(url, dataoptions)
+      .then((res) => res.json())
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));*/
+
+    fetch("/poll/create", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(readypoll),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   });
 });

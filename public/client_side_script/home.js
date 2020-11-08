@@ -12,11 +12,17 @@ document.addEventListener("DOMContentLoaded", () => {
               <input type="text" name="option" class="form-control text-muted option" value="${optionText.value}">
           </div>
         <div class="btn-group col-sm-1">
-          <button class="btn btn-sm btn-danger">remove</button>
+          <button class="btn btn-sm btn-danger" >remove</button>
         </div>
     `;
     newOption.className = "form-group row";
     options.appendChild(newOption);
+
+    let removeBtns = document.querySelectorAll(".btn-danger");
+    removeBtns[removeBtns.length - 1].addEventListener("click", () => {
+      options.removeChild(newOption);
+    });
+
     optionText.value = "";
   });
 

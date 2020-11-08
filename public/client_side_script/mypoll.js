@@ -15,20 +15,21 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const dataToRender = [];
-    dataToRender.push(`<div class="col-9 poll-container">`);
+    dataToRender.push(`<div class="col-9 poll-container rounded">`);
     for (let data of pollData) {
       dataToRender.push(`
-        <div class="container d-flex flex-column justify-content-center">
+        <div class="container d-flex flex-column justify-content-center option-full">
             <div style="align-self: center;">
-                <p class="text-primary h3 txt">${data.title}</p>
+                <p class="h3 pt-2">${data.title}</p>
             </div>
-            <div>
-                <p class="text-secondary">${data.description}</p>
+            <div style="align-self: center;">
+                <p class="text-justify">${data.description}</p>
             </div>
         `);
       renderOptions(data.options);
+      dataToRender.push("</div>");
     }
-    dataToRender.push("</div></div>");
+    dataToRender.push("</div>");
 
     return dataToRender.join("");
   };
@@ -38,6 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     axios
       .get("/poll/current/polls")
-      .then((res) => (mainContent.innerHTML = renderPolls(res.data)));
+      .then((res) => (mainContent.innerHTML = renderPolls(res.data)))
+      .catch((err) => console.log(err));
   });
 });

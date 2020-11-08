@@ -20,7 +20,9 @@ document.addEventListener("DOMContentLoaded", () => {
       dataToRender.push(`
         <div class="container d-flex flex-column justify-content-center option-full">
             <div style="align-self: center;">
-                <p class="h3 pt-2">${data.title}</p>
+                <p class="h3 pt-2">${data.title} - until ${
+        data.expiration.split("T")[0]
+      }</p>
             </div>
             <div style="align-self: center;">
                 <p class="text-justify">${data.description}</p>

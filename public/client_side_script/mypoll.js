@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }</p>
             </div>
             <div style="align-self: center;">
-                <p class="text-justify">${data.description}</p>
+                <p class="text-justify font-weight-bold">${data.description}</p>
             </div>
         `);
       renderOptions(data.options);

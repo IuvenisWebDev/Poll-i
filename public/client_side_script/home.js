@@ -12,27 +12,21 @@ document.addEventListener("DOMContentLoaded", () => {
               <input type="text" name="option" class="form-control text-muted option" value="${optionText.value}">
           </div>
         <div class="btn-group col-sm-1">
-          <button class="btn btn-sm btn-danger">remove</button>
+          <button class="btn btn-sm btn-danger" >remove</button>
         </div>
     `;
     newOption.className = "form-group row";
     options.appendChild(newOption);
+
+    let removeBtns = document.querySelectorAll(".btn-danger");
+    removeBtns[removeBtns.length - 1].addEventListener("click", () => {
+      options.removeChild(newOption);
+    });
+
     optionText.value = "";
   });
 
   createBtn.addEventListener("click", () => {
-    let poll = {};
-
-    let title = document.querySelector("#poll-title").value;
-    let description = document.querySelector("#poll-desc").value;
-    let isMultipleChoice = document.querySelector("#cb-multiple").checked;
-    let expiration = document.querySelector("#input-datetime").value;
-
-    poll.title = title;
-    poll.description = description;
-    poll.isMultipleChoice = isMultipleChoice;
-    poll.expiration = expiration;
-
     let optionsRaw = document.querySelectorAll(".option");
     let options = [];
 
@@ -40,14 +34,12 @@ document.addEventListener("DOMContentLoaded", () => {
       options.push({ label: `${option.value}`, count: 0 });
     }
 
-    poll.options = options;
-
     const readypoll = {
-      title: poll.title,
-      description: poll.description,
-      isMultipleChoice: poll.isMultipleChoice,
-      options: poll.options,
-      expiration: poll.expiration,
+      title: document.querySelector("#poll-title").value,
+      description: document.querySelector("#poll-desc").value,
+      isMultipleChoice: document.querySelector("#cb-multiple").checked,
+      options: options,
+      expiration: document.querySelector("#input-datetime").value,
     };
 
     fetch("/poll/create", {
@@ -58,9 +50,6 @@ document.addEventListener("DOMContentLoaded", () => {
       body: JSON.stringify(readypoll),
     })
       .then((response) => response.json())
-      .then((data) => {
-        console.log("Success:", data);
-      })
       .catch((error) => {
         console.error("Error:", error);
       });

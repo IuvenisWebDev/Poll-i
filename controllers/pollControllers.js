@@ -115,7 +115,7 @@ const vote = async (req, res) => {
         const poll = await Poll.findById(req.params.id);
         const user = await User.findById(req.cookies["user_id"]);
 
-        const votes = req.body.votes.split(",");
+        const votes = req.body.votes;
 
         const alreadyVoted = user.votes.filter(vote =>{
 
@@ -124,7 +124,7 @@ const vote = async (req, res) => {
         })
 
 
-        if(alreadyVoted.length > 0){
+        if(alreadyVoted.length){
             
             res.status(409).end();
 
@@ -137,7 +137,7 @@ const vote = async (req, res) => {
             res.status(409).end();
 
         }else{
-
+            
             await votes.forEach(vote => {
                     user.votes.push({
                     poll: poll._id,
@@ -148,7 +148,7 @@ const vote = async (req, res) => {
             await user.save();
 
             await poll.options.forEach( option =>{
-
+             
                 if(votes.includes(option._id.toString())){
 
                     option.count += 1;

@@ -1,7 +1,14 @@
 const mainContent = document.querySelector("#content-main");
 
+let optionsCollected = {};
+
+const vote = async pollId => {
+  await axios
+  .put(`/poll/${pollId}`, { id: pollId, votes: optionsCollected[pollId] });
+}
+
 const renderPolls = (pollData, voteOptions) => {
-  const renderOptions = (options) => {
+  const renderOptions = (options, pollId) => {
     for (let option of options) {
       dataToRender.push(`
             <div class="d-flex flex-row justify-content-between mb-2">
@@ -10,9 +17,12 @@ const renderPolls = (pollData, voteOptions) => {
             `);
 
       if (voteOptions) {
-        dataToRender.push(`<button class="btn btn-success">select</button>`);
+        dataToRender.push(
+          `<button onClick="vote('${pollId}')" class="btn btn-success">select</button>`
+        );
       }
       dataToRender.push("</div>");
+      optionsCollected[pollId] += optionsCollected[pollId]? `,${option.label}` : `${option.label}`;
     }
   };
 
@@ -32,7 +42,10 @@ const renderPolls = (pollData, voteOptions) => {
                   }</p>
               </div>
           `);
-    renderOptions(data.options);
+    
+    optionsCollected[data._id] = "";
+    renderOptions(data.options, data._id);
+
     dataToRender.push("</div>");
   }
   dataToRender.push("</div>");

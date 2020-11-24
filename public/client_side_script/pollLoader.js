@@ -26,7 +26,6 @@ const renderPolls = (pollData, voteOptions) => {
         );
       }
       dataToRender.push("</div>");
-      //optionsCollected[pollId] += optionsCollected[pollId]? `,${option._id}` : `${option._id}`;
       optionsCollected[pollId].push(option._id);
     }
   };
@@ -34,12 +33,15 @@ const renderPolls = (pollData, voteOptions) => {
   const dataToRender = [];
   dataToRender.push(`<div class="col-9 poll-container rounded">`);
   for (let data of pollData) {
+    let pollExpiration = data.expiration.split("T")[0];
+    let hasExpired = new Date(data.expiration).getTime() < Date.now();
+
     dataToRender.push(`
           <div class="container d-flex flex-column justify-content-center option-full">
               <div style="align-self: center;">
-                  <p class="h3 pt-2">${data.title} - until ${
-      data.expiration.split("T")[0]
-    }</p>
+                  <p class=${hasExpired ? "h3 pt-3 text-danger" : "h3 pt-2"}>${
+      data.title
+    } - expiration: ${hasExpired ? "EXPIRED" : pollExpiration}</p>
               </div>
               <div style="align-self: center;">
                   <p class="text-justify font-weight-bold">${

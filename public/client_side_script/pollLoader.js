@@ -39,9 +39,9 @@ const renderPolls = (pollData, voteOptions) => {
     dataToRender.push(`
           <div class="container d-flex flex-column justify-content-center option-full">
               <div style="align-self: center;">
-                  <p class=${hasExpired ? "h3 pt-3 text-danger" : "h3 pt-2"}>${
-      data.title
-    } - expiration: ${hasExpired ? "EXPIRED" : pollExpiration}</p>
+                  <p class="h3 pt-2">${data.title} - expiration: ${
+      hasExpired ? `<span style="color: red">EXPIRED</span>` : pollExpiration
+    }</p>
               </div>
               <div style="align-self: center;">
                   <p class="text-justify font-weight-bold">${

@@ -14,6 +14,14 @@ const sendVoteOptions = async () => {
     id: selectedPollId,
     votes: selectedOptionIds
   });
+
+  await axios
+    .get("/poll")
+    .then(
+      res =>
+        (mainContent.innerHTML = renderPolls(res.data, { voteOptions: true }))
+    )
+    .catch(err => console.log(err));
 };
 
 const renderPolls = (pollData, voteOptions) => {

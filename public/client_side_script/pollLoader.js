@@ -3,9 +3,13 @@ const mainContent = document.querySelector("#content-main");
 let optionsCollected = {};
 
 const vote = async pollId => {
-  await axios
-  .put(`/poll/${pollId}`, { id: pollId, votes: optionsCollected[pollId] });
-}
+  console.log(optionsCollected[pollId]);
+
+  await axios.put(`/poll/${pollId}`, {
+    id: pollId,
+    votes: optionsCollected[pollId]
+  });
+};
 
 const renderPolls = (pollData, voteOptions) => {
   const renderOptions = (options, pollId) => {
@@ -22,7 +26,8 @@ const renderPolls = (pollData, voteOptions) => {
         );
       }
       dataToRender.push("</div>");
-      optionsCollected[pollId] += optionsCollected[pollId]? `,${option.label}` : `${option.label}`;
+      //optionsCollected[pollId] += optionsCollected[pollId]? `,${option._id}` : `${option._id}`;
+      optionsCollected[pollId].push(option._id);
     }
   };
 
@@ -42,8 +47,8 @@ const renderPolls = (pollData, voteOptions) => {
                   }</p>
               </div>
           `);
-    
-    optionsCollected[data._id] = "";
+
+    optionsCollected[data._id] = [];
     renderOptions(data.options, data._id);
 
     dataToRender.push("</div>");

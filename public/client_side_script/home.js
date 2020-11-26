@@ -3,6 +3,39 @@ document.addEventListener("DOMContentLoaded", () => {
   const options = document.querySelector("#form-create");
   const optionText = document.querySelector("#poll-answer");
   const createBtn = document.querySelector("#btn-create");
+  const pollOptionsNew = document.querySelector("#poll-options-new");
+  const mainContent = document.querySelector("#content-main");
+
+  let title = document.querySelector("#poll-title");
+  let description = document.querySelector("#poll-desc");
+  let termsChecked = document.querySelector("#cb-multiple");
+  let expiration = document.querySelector("#input-datetime");
+
+  const emptyFormValues = () => {
+    title.value = "";
+    description.value = "";
+    termsChecked.checked = false;
+    expiration.value = "";
+
+    while (pollOptionsNew.firstChild) {
+      pollOptionsNew.removeChild(pollOptionsNew.firstChild);
+    }
+  };
+
+  const displayMessage = message => {
+    const messageElement = document.createElement("div");
+    messageElement.innerHTML = `
+    <div id="main-alert" class="alert ${message.type} text-center col-10 ml-3 mt-4" role="alert">
+    ${message.text}
+    </div>
+  `;
+    mainContent.appendChild(messageElement);
+
+    setTimeout(() => {
+      messageToRemove = document.querySelector("#main-alert");
+      messageToRemove.remove();
+    }, 3000);
+  };
 
   addBtn.addEventListener("click", () => {
     const newOption = document.createElement("div");
@@ -16,11 +49,11 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
     `;
     newOption.className = "form-group row";
-    options.appendChild(newOption);
+    pollOptionsNew.appendChild(newOption);
 
     let removeBtns = document.querySelectorAll(".btn-danger");
     removeBtns[removeBtns.length - 1].addEventListener("click", () => {
-      options.removeChild(newOption);
+      pollOptionsNew.removeChild(newOption);
     });
 
     optionText.value = "";
@@ -35,22 +68,29 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const readypoll = {
-      title: document.querySelector("#poll-title").value,
-      description: document.querySelector("#poll-desc").value,
-      isMultipleChoice: document.querySelector("#cb-multiple").checked,
+      title: title.value,
+      description: description.value,
+      isMultipleChoice: termsChecked.checked,
       options: options,
-      expiration: document.querySelector("#input-datetime").value,
+      expiration: expiration.value
     };
 
     fetch("/poll/create", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
-      body: JSON.stringify(readypoll),
+      body: JSON.stringify(readypoll)
     })
-      .then((response) => response.json())
-      .catch((error) => {
+      .then(response => response.json())
+      .then(emptyFormValues())
+      .then(
+        displayMessage({
+          text: "New poll created successfully!",
+          type: "alert-success"
+        })
+      )
+      .catch(error => {
         console.error("Error:", error);
       });
   });

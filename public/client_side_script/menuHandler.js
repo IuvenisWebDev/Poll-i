@@ -17,7 +17,12 @@ document
       .then(
         res =>
           (mainContent.innerHTML = renderPolls(res.data, { voteOptions: true }))
-          
       )
       .catch(err => console.log(err));
   });
+
+document.querySelector("#myvotes-menu").addEventListener("click", async () => {
+  await axios
+    .get("/poll", { params: { type: "votes" } })
+    .then(res => (mainContent.innerHTML = renderPolls(res.data)));
+});

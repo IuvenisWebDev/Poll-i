@@ -1,5 +1,5 @@
 document.querySelector("#mypolls-menu").addEventListener("click", async () => {
-  mainContent.innerHTML = "";
+  mainContent.innerHTML = `<div class="loader"></div>`;
 
   await axios
     .get("/poll/current/polls")
@@ -10,7 +10,7 @@ document.querySelector("#mypolls-menu").addEventListener("click", async () => {
 document
   .querySelector("#openpolls-menu")
   .addEventListener("click", async () => {
-    mainContent.innerHTML = "";
+    mainContent.innerHTML = `<div class="loader"></div>`;
 
     await axios
       .get("/poll")
@@ -22,6 +22,8 @@ document
   });
 
 document.querySelector("#myvotes-menu").addEventListener("click", async () => {
+  mainContent.innerHTML = `<div class="loader"></div>`;
+
   await axios
     .get("/poll", { params: { type: "votes" } })
     .then(res => (mainContent.innerHTML = renderPolls(res.data)));

@@ -22,14 +22,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  const displayMessage = message => {
+  const displayMessage = (message, containerElement) => {
+    containerElement = mainContent;
     const messageElement = document.createElement("div");
     messageElement.innerHTML = `
     <div id="main-alert" class="alert ${message.type} text-center col-10 ml-3 mt-4" role="alert">
     ${message.text}
     </div>
   `;
-    mainContent.appendChild(messageElement);
+    containerElement.appendChild(messageElement);
 
     setTimeout(() => {
       messageToRemove = document.querySelector("#main-alert");

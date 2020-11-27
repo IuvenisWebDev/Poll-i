@@ -23,14 +23,21 @@ const signUp = async (req, res) => {
 
 const login = async (req, res) => {
   try {
+
     const user = await User.findOne({ email: req.body.email });
 
     if (!user) {
+
       res.status(409).end();
+
     } else if (!(await bcrypt.compare(req.body.password, user.password))) {
+
       res.status(401).end();
+
     } else {
+
       await res.cookie("user_id", user._id, { httpOnly: true, maxAge: 86400000});
+      await res.cookie("user_name", user.name, { httpOnly: true, maxAge: 86400000});
       res.redirect("/");
     }
   } catch (err) {
@@ -42,6 +49,7 @@ const signOut = async (req,res) =>{
   try{
 
     res.clearCookie("user_id");
+    res.clearCookie("user_name");
     res.redirect("/");
   }catch (err){
     console.log(err);

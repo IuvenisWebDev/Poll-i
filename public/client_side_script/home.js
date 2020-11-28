@@ -22,22 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  const displayMessage = (message, containerElement) => {
-    containerElement = mainContent;
-    const messageElement = document.createElement("div");
-    messageElement.innerHTML = `
-    <div id="main-alert" class="alert ${message.type} text-center col-10 ml-3 mt-4" role="alert">
-    ${message.text}
-    </div>
-  `;
-    containerElement.appendChild(messageElement);
-
-    setTimeout(() => {
-      messageToRemove = document.querySelector("#main-alert");
-      messageToRemove.remove();
-    }, 3000);
-  };
-
   addBtn.addEventListener("click", () => {
     const newOption = document.createElement("div");
     newOption.innerHTML = `
@@ -76,6 +60,13 @@ document.addEventListener("DOMContentLoaded", () => {
       expiration: expiration.value
     };
 
+    let message = new Message(
+      "New poll created successfully!",
+      "alert-success",
+      mainContent,
+      3000
+    );
+
     fetch("/poll/create", {
       method: "POST",
       headers: {
@@ -85,12 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
       .then(response => response.json())
       .then(emptyFormValues())
-      .then(
-        displayMessage({
-          text: "New poll created successfully!",
-          type: "alert-success"
-        })
-      )
+      .then(message.displayMessage())
       .catch(error => {
         console.error("Error:", error);
       });

@@ -60,12 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
       expiration: expiration.value
     };
 
-    let message = new Message(
-      "New poll created successfully!",
-      "alert-success",
-      mainContent,
-      3000
-    );
+    let message;
 
     fetch("/poll/create", {
       method: "POST",
@@ -76,7 +71,14 @@ document.addEventListener("DOMContentLoaded", () => {
     })
       .then(response => response.json())
       .then(emptyFormValues())
-      .then(message.displayMessage())
+      .then(
+        (message = new Message(
+          "New poll created successfully!",
+          "alert-success",
+          mainContent,
+          3000
+        ))
+      )
       .catch(error => {
         console.error("Error:", error);
       });

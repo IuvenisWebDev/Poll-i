@@ -74,7 +74,6 @@ const renderPolls = (pollData, voteOptions) => {
       );
     }
     dataToRender.push("</div>");
-    pollcount++;
   }
   dataToRender.push("</div>");
 

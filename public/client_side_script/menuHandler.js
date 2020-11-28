@@ -25,6 +25,7 @@ document.querySelector("#myvotes-menu").addEventListener("click", async () => {
   mainContent.innerHTML = `<div class="loader"></div>`;
 
   await axios
-    .get("/poll", { params: { type: "votes" } })
-    .then(res => (mainContent.innerHTML = renderPolls(res.data)));
+    .get("/poll/current/votes")
+    .then(res => (mainContent.innerHTML = renderPolls(res.data)))
+    .catch(err => console.log(err));
 });

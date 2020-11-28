@@ -4,6 +4,8 @@ class Message {
     this.type = type;
     this.target = target;
     this.displayTime = displayTime;
+
+    this.displayMessage();
   }
 
   displayMessage = () => {

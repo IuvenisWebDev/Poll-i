@@ -71,14 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
       .then(response => response.json())
       .then(emptyFormValues())
-      .then(
-        (message = new Message(
-          "New poll created successfully!",
-          "alert-success",
-          mainContent,
-          3000
-        ))
-      )
+      .then((message = new Message("New poll created!", "", 5000, true)))
       .catch(error => {
         console.error("Error:", error);
       });

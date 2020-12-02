@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
       for (let value in readypoll) {
         if (!readypoll[value]) {
           message = new Message(
-            "Poll successfully created!",
+            "Please fill the form with appropriate values!",
             "message-info",
             5000
           );

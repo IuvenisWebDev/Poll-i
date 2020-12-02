@@ -1,7 +1,7 @@
 const Poll = require('../models/pollModel');
 const User = require('../models/userModel');
 
-const get_poll = async (req, res) =>{
+const get_poll = async (req, res,next) =>{
 
     try{
 
@@ -27,7 +27,7 @@ const get_poll = async (req, res) =>{
 
             }else{
 
-                res.status(404).end();
+                res.status(404).send({error: "Invalid url."});
 
             }
 
@@ -57,7 +57,7 @@ const get_poll = async (req, res) =>{
 
     }catch (err){
 
-        console.log(err)
+        next(err._message)
 
     }
     
@@ -89,26 +89,19 @@ const create_poll = async (req, res) =>{
             expiration
         });
 
-        poll.save()
-            .then( async (result) =>{
+        await poll.save()
+            
+        await user.polls.push(result._id);
+        await user.save();
 
-                await user.polls.push(result._id);
-                await user.save();
-
-                res.send(result);
-
-            }).catch((err) =>{
-
-                console.log(err);
-
-            })
+        res.send(result);
 
     }catch (err){
-        console.log(err);
+        res.status(400).send({error:err._message});
     }
 };
 
-const vote = async (req, res) => {
+const vote = async (req, res,next) => {
 
     try{
 
@@ -126,15 +119,15 @@ const vote = async (req, res) => {
 
         if(alreadyVoted.length){
             
-            res.status(409).end();
+            res.status(409).send({error: "You've already casted a vote on this poll."});
 
         }else if( (!poll.isMultipleChoice) && votes.length > 1){
             
-            res.status(406).end();
+            res.status(406).send({error: "This is a single choice poll."});
 
         }else if(Number(poll.expiration ) < Date.now()){
 
-            res.status(409).end();
+            res.status(409).send({error: "This poll is expired."});
 
         }else{
             
@@ -168,7 +161,7 @@ const vote = async (req, res) => {
 
     }catch (err){
 
-        console.log(err);
+        next(err)
 
     }
 

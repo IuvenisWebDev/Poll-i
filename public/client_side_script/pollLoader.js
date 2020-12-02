@@ -10,18 +10,25 @@ const selectOption = (pollId, ordinal) => {
 };
 
 const sendVoteOptions = async () => {
-  await axios.put(`/poll/${selectedPollId}`, {
-    id: selectedPollId,
-    votes: selectedOptionIds
-  });
+  let message;
 
   await axios
-    .get("/poll")
-    .then(
-      res =>
-        (mainContent.innerHTML = renderPolls(res.data, { voteOptions: true }))
-    )
-    .catch(err => console.log(err));
+    .put(`/poll/${selectedPollId}`, {
+      id: selectedPollId,
+      votes: selectedOptionIds
+    })
+    .then(res => console.log(res))
+    .then((message = new Message("Vote submitted!", "", 5000, true)))
+    .catch(err => {
+      console.log(err);
+    });
+
+  await await axios.get("/poll").then(
+    res =>
+      (mainContent.innerHTML = renderPolls(res.data, {
+        voteOptions: true
+      }))
+  );
 };
 
 const renderPolls = (pollData, voteOptions) => {

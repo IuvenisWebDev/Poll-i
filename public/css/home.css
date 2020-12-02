@@ -108,3 +108,56 @@ footer {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+@-webkit-keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.message-visible {
+  display: flex;
+  z-index: 1500;
+  position: fixed;
+  left: 40vw;
+  top: 45vh;
+  height: 8vh;
+  width: 20vw;
+  background-color:#17a2b8;
+  color: white;
+  border-radius: 5px;
+  font-size: 4vh;
+  align-items: center;
+  justify-content: center;
+  padding-top: 1vh;
+}
+
+.message-fadeout{
+  animation: fadeOut ease 3s;
+  -webkit-animation: fadeOut ease 3s;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity:1;
+  }
+  100% {
+    opacity:0;
+  }
+}
+
+@-webkit-keyframes fadeOut {
+  0% {
+    opacity:1;
+  }
+  100% {
+    opacity:0;
+  }
+}
+
+.no-polls {
+  position: fixed;
+  left: 40vw;
+  top: 30vh;
+  font-size: 12vh;
+  color:rgb(131, 143, 140);
+}

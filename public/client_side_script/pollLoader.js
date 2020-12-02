@@ -11,19 +11,38 @@ const selectOption = (pollId, ordinal) => {
 
 const sendVoteOptions = async () => {
   let message;
+  let responseStatus;
 
   await axios
     .put(`/poll/${selectedPollId}`, {
       id: selectedPollId,
       votes: selectedOptionIds
     })
-    .then(res => console.log(res))
-    .then((message = new Message("Vote submitted!", "", 5000, true)))
     .catch(err => {
-      console.log(err);
+      responseStatus = err.response.status;
     });
 
-  await await axios.get("/poll").then(
+  if (!responseStatus) {
+    message = new Message("Vote submitted!", "message-info", 5000);
+  } else {
+    switch (responseStatus) {
+      case 404:
+        message = new Message(
+          "Please select the corresponding option(s).",
+          "message-error",
+          5000
+        );
+        break;
+      case 409:
+        message = new Message(
+          "You have already sent a vote for this one.",
+          "message-error",
+          5000
+        );
+    }
+  }
+
+  await axios.get("/poll").then(
     res =>
       (mainContent.innerHTML = renderPolls(res.data, {
         voteOptions: true

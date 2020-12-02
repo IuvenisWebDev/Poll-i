@@ -1,26 +1,28 @@
 class Message {
-  constructor(text, type, target, displayTime) {
+  constructor(text, type, displayTime, isFixed) {
     this.text = text;
     this.type = type;
-    this.target = target;
     this.displayTime = displayTime;
+    this.isFixed = isFixed;
 
     this.displayMessage();
   }
 
   displayMessage = () => {
     let msgContainer = document.createElement("div");
-    msgContainer.innerHTML = `
-    <div id="msg-alert" class="alert ${this.type} text-center col-10 ml-3 mt-4" role="alert">
-    ${this.text}
-    </div>
-    `;
+    msgContainer.setAttribute("id", "msg-alert");
+    msgContainer.innerHTML = `<p>${this.text}</p>`;
+    document.querySelector("#messages").appendChild(msgContainer);
 
-    this.target.appendChild(msgContainer);
-
-    setTimeout(() => {
-      let messageToRemove = document.querySelector("#msg-alert");
-      messageToRemove.remove();
-    }, this.displayTime);
+    if (!this.isFixed) {
+    } else {
+      msgContainer.classList.add("message-visible");
+      setTimeout(() => {
+        msgContainer.classList.add("message-fadeout");
+      }, this.displayTime - 3000);
+      setTimeout(() => {
+        msgContainer.remove();
+      }, this.displayTime);
+    }
   };
 }

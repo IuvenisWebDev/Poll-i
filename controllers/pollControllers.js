@@ -89,7 +89,7 @@ const create_poll = async (req, res) =>{
             expiration
         });
 
-        await poll.save()
+        result = await poll.save()
             
         await user.polls.push(result._id);
         await user.save();
@@ -97,6 +97,7 @@ const create_poll = async (req, res) =>{
         res.send(result);
 
     }catch (err){
+        console.log(err)
         res.status(400).send({error:err._message});
     }
 };

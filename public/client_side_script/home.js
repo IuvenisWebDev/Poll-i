@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
     optionText.value = "";
   });
 
-  createBtn.addEventListener("click", () => {
+  createBtn.addEventListener("click", async () => {
     let optionsRaw = document.querySelectorAll(".option");
     let options = [];
 
@@ -61,19 +61,41 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     let message;
+    let errorStatus;
 
-    fetch("/poll/create", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(readypoll)
-    })
-      .then(response => response.json())
+    //TODO: client side validation
+
+    const checkForm = () => {
+      for (let value in readypoll) {
+        if (!readypoll[value]) {
+          message = new Message(
+            "Please fill the form with appropriate values!",
+            "message-info",
+            5000
+          );
+          return;
+        }
+      }
+    };
+
+    await axios
+      .post("/poll/create", {
+        title: title.value,
+        description: description.value,
+        isMultipleChoice: termsChecked.checked,
+        options: options,
+        expiration: expiration.value
+      })
+      .then(checkForm())
       .then(emptyFormValues())
-      .then((message = new Message("New poll created!", "", 5000, true)))
-      .catch(error => {
-        console.error("Error:", error);
-      });
+      .catch(err => (errorStatus = err.response.status));
+
+    if (!errorStatus) {
+      message = new Message(
+        "Poll successfully created!",
+        "message-success",
+        5000
+      );
+    }
   });
 });

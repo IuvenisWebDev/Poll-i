@@ -114,21 +114,61 @@ footer {
   100% { transform: rotate(360deg); }
 }
 
-.message-visible {
+.message-success {
   display: flex;
   z-index: 1500;
   position: fixed;
-  left: 40vw;
+  left: 33vw;
   top: 45vh;
-  height: 8vh;
-  width: 20vw;
-  background-color:#17a2b8;
+  height: 15vh;
+  width: 35vw;
+  background-color:#28a745;
   color: white;
+  border: 2px solid #048830;
   border-radius: 5px;
-  font-size: 4vh;
+  font-size: 3vh;
   align-items: center;
   justify-content: center;
-  padding-top: 1vh;
+  text-align: center;
+  padding: 1vh 1vh 1vh 1vh;
+}
+
+.message-info {
+  display: flex;
+  z-index: 1500;
+  position: fixed;
+  left: 33vw;
+  top: 45vh;
+  height: 15vh;
+  width: 35vw;
+  background-color:#17a2b8;
+  color: white;
+  border: 2px solid #047f92;
+  border-radius: 5px;
+  font-size: 3vh;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1vh 1vh 1vh 1vh;
+}
+
+.message-error {
+  display: flex;
+  z-index: 1500;
+  position: fixed;
+  left: 33vw;
+  top: 45vh;
+  height: 15vh;
+  width: 35vw;
+  background-color:#cd3435;
+  color: white;
+  border: 2px solid #c71212;
+  border-radius: 5px;
+  font-size: 3vh;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1vh 1vh 1vh 1vh;
 }
 
 .message-fadeout{
